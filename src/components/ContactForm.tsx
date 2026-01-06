@@ -3,7 +3,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { gsap } from 'gsap';
-import { FadeIn } from './animations';
+import { FadeIn, usePageTransition } from './animations';
 
 const productOptions = [
     { id: 'essential', name: 'Essential Clean', price: '$89', color: '#9FD3C7' },
@@ -12,6 +12,7 @@ const productOptions = [
 ];
 
 const ContactForm = () => {
+    const { navigateToTop } = usePageTransition();
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -73,11 +74,13 @@ const ContactForm = () => {
         if (!validateForm()) {
             // Shake animation for product cards if not selected
             if (!formData.selectedProduct && productCardsRef.current) {
-                gsap.to(productCardsRef.current, {
-                    x: [-10, 10, -10, 10, 0],
-                    duration: 0.4,
-                    ease: 'power2.out'
-                });
+                const el = productCardsRef.current;
+                const tl = gsap.timeline();
+                tl.to(el, { x: -10, duration: 0.08 })
+                    .to(el, { x: 10, duration: 0.08 })
+                    .to(el, { x: -10, duration: 0.08 })
+                    .to(el, { x: 10, duration: 0.08 })
+                    .to(el, { x: 0, duration: 0.08 });
             }
             return;
         }
@@ -125,12 +128,18 @@ const ContactForm = () => {
                 opacity: 0,
                 y: -20,
                 duration: 0.4,
-                delay: 4,
+                delay: 2.5,
                 ease: 'power2.in',
-                onComplete: () => setShowSuccessMessage(false)
+                onComplete: () => {
+                    setShowSuccessMessage(false);
+                    // Navigate to top with wipe transition
+                    setTimeout(() => {
+                        navigateToTop();
+                    }, 200);
+                }
             });
         }
-    }, [showSuccessMessage]);
+    }, [showSuccessMessage, navigateToTop]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -236,8 +245,8 @@ const ContactForm = () => {
                                     <motion.div
                                         key={product.id}
                                         className={`product-card relative p-4 sm:p-5 rounded-xl cursor-pointer transition-all duration-300 border-2 ${formData.selectedProduct === product.id
-                                                ? 'border-[#2E7D5A] bg-[#2E7D5A]/10 shadow-lg'
-                                                : 'border-[#9FD3C7]/40 bg-white hover:border-[#9FD3C7]'
+                                            ? 'border-[#2E7D5A] bg-[#2E7D5A]/10 shadow-lg'
+                                            : 'border-[#9FD3C7]/40 bg-white hover:border-[#9FD3C7]'
                                             }`}
                                         onClick={() => handleProductSelect(product.id)}
                                         whileHover={{ y: -5 }}
