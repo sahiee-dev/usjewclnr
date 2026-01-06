@@ -1,0 +1,204 @@
+@import "tailwindcss";
+
+/* ============================================
+   THEME CONFIGURATION - SAGE & EMERALD PALETTE
+   Change these values to update the entire website's color scheme
+   ============================================ */
+
+:root {
+  /* Background Colors */
+  --color-bg-primary: #F7F9F6;
+  /* Off White - Main background */
+  --color-bg-secondary: #E6EFEA;
+  /* Pastel Sage - Section backgrounds */
+  --color-bg-accent: #9FD3C7;
+  /* Soft Mint - Accent backgrounds */
+
+  /* Primary Colors */
+  --color-primary: #F7F9F6;
+  /* Off White background */
+  --color-primary-dark: #E6EFEA;
+  /* Sage sections */
+  --color-primary-light: #FFFFFF;
+  /* Pure white for contrast */
+
+  /* Text Colors */
+  --color-text-primary: #1F3D2B;
+  /* Dark Forest Green - Main text */
+  --color-text-secondary: #2E5A42;
+  /* Slightly lighter green */
+  --color-text-muted: rgba(31, 61, 43, 0.7);
+  /* Muted forest green */
+  --color-text-light: #FFFFFF;
+  /* Light text (on dark backgrounds) */
+
+  /* Surface Colors (cards, inputs - glassmorphic) */
+  --color-surface: rgba(230, 239, 234, 0.6);
+  /* Sage with transparency */
+  --color-surface-hover: rgba(230, 239, 234, 0.8);
+  /* Hover state */
+  --color-surface-active: rgba(230, 239, 234, 0.95);
+  /* Active state */
+  --color-surface-solid: #E6EFEA;
+  /* Solid sage for cards */
+
+  /* Border Colors */
+  --color-border: rgba(46, 125, 90, 0.20);
+  /* Emerald border */
+  --color-border-hover: rgba(46, 125, 90, 0.40);
+  /* Hover border */
+  --color-border-focus: rgba(46, 125, 90, 0.60);
+  /* Focus border */
+  --color-border-light: rgba(159, 211, 199, 0.50);
+  /* Mint border */
+
+  /* CTA / Button Colors */
+  --color-cta: #2E7D5A;
+  /* Emerald Green - Primary CTA */
+  --color-cta-hover: #256B4C;
+  /* Darker emerald on hover */
+  --color-cta-light: #3A9D70;
+  /* Lighter emerald */
+  --color-button-text: #FFFFFF;
+  /* Button text */
+  --color-button-secondary: rgba(46, 125, 90, 0.10);
+  /* Secondary button bg */
+  --color-button-secondary-hover: rgba(46, 125, 90, 0.20);
+
+  /* Accent Colors */
+  --color-accent: #9FD3C7;
+  /* Soft Mint - Icons, highlights */
+  --color-accent-dark: #7BC4B5;
+  /* Darker mint */
+  --color-accent-light: #C2E6DE;
+  /* Lighter mint */
+  --color-star: #F5C842;
+  /* Gold for star ratings */
+
+  /* Shadow Colors - Softer for light theme */
+  --shadow-sm: 0 4px 16px rgba(31, 61, 43, 0.06);
+  --shadow-md: 0 8px 32px rgba(31, 61, 43, 0.10);
+  --shadow-lg: 0 12px 48px rgba(31, 61, 43, 0.15);
+
+  /* Gradient Presets */
+  --gradient-surface: linear-gradient(to bottom right, rgba(230, 239, 234, 0.8), rgba(230, 239, 234, 0.5));
+  --gradient-surface-highlighted: linear-gradient(to bottom right, rgba(159, 211, 199, 0.3), rgba(230, 239, 234, 0.6));
+  --gradient-cta: linear-gradient(135deg, #2E7D5A, #3A9D70);
+}
+
+/* ============================================
+   TAILWIND THEME EXTENSION
+   ============================================ */
+
+@theme inline {
+  --color-background: var(--color-bg-primary);
+  --color-foreground: var(--color-text-primary);
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+
+body {
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-cta);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-cta-hover);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ============================================
+   UTILITY CLASSES FOR THEME COLORS
+   ============================================ */
+
+/* Backgrounds */
+.bg-theme-primary {
+  background-color: var(--color-bg-primary);
+}
+
+.bg-theme-secondary {
+  background-color: var(--color-bg-secondary);
+}
+
+.bg-theme-surface {
+  background: var(--gradient-surface);
+}
+
+/* Text */
+.text-theme-primary {
+  color: var(--color-text-primary);
+}
+
+.text-theme-light {
+  color: var(--color-text-light);
+}
+
+.text-theme-muted {
+  color: var(--color-text-muted);
+}
+
+/* CTA Button */
+.btn-cta {
+  background: var(--color-cta);
+  color: var(--color-button-text);
+  transition: all 0.3s ease;
+}
+
+.btn-cta:hover {
+  background: var(--color-cta-hover);
+}
+
+/* Secondary Button */
+.btn-secondary {
+  background: var(--color-button-secondary);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border);
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: var(--color-button-secondary-hover);
+  border-color: var(--color-border-hover);
+}
+
+/* Shadows */
+.shadow-theme-sm {
+  box-shadow: var(--shadow-sm);
+}
+
+.shadow-theme-md {
+  box-shadow: var(--shadow-md);
+}
+
+.shadow-theme-lg {
+  box-shadow: var(--shadow-lg);
+}
+
+/* Glassmorphic card style */
+.glass-card {
+  background: var(--gradient-surface);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--color-border-light);
+  box-shadow: var(--shadow-md);
+}
