@@ -19,7 +19,7 @@ export default function Home() {
   return (
     <>
       {isLoading && <Preloader onComplete={() => setIsLoading(false)} />}
-      <main className={`min-h-screen bg-[#F7F9F6] ${isLoading ? 'overflow-hidden h-screen' : ''}`}>
+      <main className={`min-h-screen bg-[#F7F9F6] overflow-x-hidden ${isLoading ? 'overflow-hidden h-screen' : ''}`}>
         <Header />
         <Hero />
         <ProductDescription />
