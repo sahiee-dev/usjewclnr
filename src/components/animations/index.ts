@@ -6,3 +6,4 @@ export { default as Preloader } from './Preloader';
 export { default as SplitTextReveal } from './SplitTextReveal';
 export { default as HorizontalScroll } from './HorizontalScroll';
 export { default as ParallaxSection } from './ParallaxSection';
+export { usePageTransition, PageTransitionProvider } from './PageTransition';

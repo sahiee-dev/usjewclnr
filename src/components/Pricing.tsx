@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FadeIn } from './animations';
+import { FadeIn, usePageTransition } from './animations';
 
 const pricingPlans = [
     {
@@ -41,6 +41,12 @@ const pricingPlans = [
 ];
 
 const Pricing = () => {
+    const { navigateWithTransition } = usePageTransition();
+
+    const handleBuyClick = () => {
+        navigateWithTransition('contact');
+    };
+
     return (
         <section id="pricing" className="w-full px-4 sm:px-6 md:px-10 py-8 sm:py-10 md:py-12 bg-[#E6EFEA]">
             <div className="max-w-6xl mx-auto">
@@ -139,7 +145,8 @@ const Pricing = () => {
                             </ul>
 
                             <motion.button
-                                className={`w-full py-2.5 sm:py-3 rounded-full font-medium text-xs sm:text-sm relative z-10 overflow-hidden ${plan.highlighted
+                                onClick={handleBuyClick}
+                                className={`w-full py-2.5 sm:py-3 rounded-full font-medium text-xs sm:text-sm relative z-10 overflow-hidden cursor-pointer ${plan.highlighted
                                     ? 'bg-[#2E7D5A] text-white shadow-lg'
                                     : 'bg-[#2E7D5A]/10 text-[#2E7D5A] border border-[#2E7D5A]/30'
                                     }`}
