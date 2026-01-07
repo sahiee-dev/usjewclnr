@@ -15,17 +15,25 @@ interface AnimationProviderProps {
 
 const AnimationProvider = ({ children }: AnimationProviderProps) => {
     useEffect(() => {
-        // Enable smooth scroll behavior
-        document.documentElement.style.scrollBehavior = 'smooth';
-
-        // Refresh ScrollTrigger on resize
-        const handleResize = () => {
+        // Refresh ScrollTrigger after initial load
+        const timeout = setTimeout(() => {
             ScrollTrigger.refresh();
+        }, 100);
+
+        // Refresh ScrollTrigger on resize (debounced)
+        let resizeTimeout: ReturnType<typeof setTimeout>;
+        const handleResize = () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                ScrollTrigger.refresh();
+            }, 200);
         };
 
         window.addEventListener('resize', handleResize);
 
         return () => {
+            clearTimeout(timeout);
+            clearTimeout(resizeTimeout);
             window.removeEventListener('resize', handleResize);
             ScrollTrigger.killAll();
         };
@@ -35,3 +43,4 @@ const AnimationProvider = ({ children }: AnimationProviderProps) => {
 };
 
 export default AnimationProvider;
+

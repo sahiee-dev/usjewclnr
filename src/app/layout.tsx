@@ -26,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} ${playfair.variable} antialiased font-sans overflow-x-hidden`} suppressHydrationWarning>
+      <body className={`${inter.variable} ${playfair.variable} antialiased font-sans`} suppressHydrationWarning>
         <AnimationProvider>
           {children}
         </AnimationProvider>

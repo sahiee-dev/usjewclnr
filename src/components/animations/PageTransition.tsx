@@ -1,65 +1,91 @@
 'use client';
 
-import { useRef, useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { gsap } from 'gsap';
 
 interface PageTransitionProps {
     children: React.ReactNode;
 }
 
+// Global overlay references to prevent duplicates
+let overlay1: HTMLDivElement | null = null;
+let overlay2: HTMLDivElement | null = null;
+
+const createOverlays = () => {
+    // Remove any existing overlays first
+    const existing1 = document.getElementById('page-transition-overlay-1');
+    const existing2 = document.getElementById('page-transition-overlay-2');
+    if (existing1) existing1.remove();
+    if (existing2) existing2.remove();
+    overlay1 = null;
+    overlay2 = null;
+
+    // Create first overlay (emerald green)
+    overlay1 = document.createElement('div');
+    overlay1.id = 'page-transition-overlay-1';
+    overlay1.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: #2E7D5A;
+        z-index: 9998;
+        transform: scaleX(0);
+        transform-origin: left center;
+        pointer-events: none;
+        overflow: hidden;
+    `;
+    document.body.appendChild(overlay1);
+
+    // Create second overlay (cream/beige)
+    overlay2 = document.createElement('div');
+    overlay2.id = 'page-transition-overlay-2';
+    overlay2.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: #F5F0E8;
+        z-index: 9997;
+        transform: scaleX(0);
+        transform-origin: left center;
+        pointer-events: none;
+        overflow: hidden;
+    `;
+    document.body.appendChild(overlay2);
+};
+
+const cleanupOverlays = () => {
+    const existing1 = document.getElementById('page-transition-overlay-1');
+    const existing2 = document.getElementById('page-transition-overlay-2');
+    if (existing1) existing1.remove();
+    if (existing2) existing2.remove();
+    overlay1 = null;
+    overlay2 = null;
+};
+
 export const usePageTransition = () => {
-    const overlayRef = useRef<HTMLDivElement | null>(null);
-    const overlayRef2 = useRef<HTMLDivElement | null>(null);
-
-    const createOverlays = () => {
-        // Create first overlay (emerald green)
-        if (!overlayRef.current) {
-            const overlay = document.createElement('div');
-            overlay.id = 'page-transition-overlay-1';
-            overlay.style.cssText = `
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100vw;
-                height: 100vh;
-                background: #2E7D5A;
-                z-index: 9998;
-                transform: scaleX(0);
-                transform-origin: left center;
-            `;
-            document.body.appendChild(overlay);
-            overlayRef.current = overlay;
-        }
-
-        // Create second overlay (cream/beige)
-        if (!overlayRef2.current) {
-            const overlay2 = document.createElement('div');
-            overlay2.id = 'page-transition-overlay-2';
-            overlay2.style.cssText = `
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100vw;
-                height: 100vh;
-                background: #F5F0E8;
-                z-index: 9997;
-                transform: scaleX(0);
-                transform-origin: left center;
-            `;
-            document.body.appendChild(overlay2);
-            overlayRef2.current = overlay2;
-        }
-    };
+    // Cleanup on unmount
+    useEffect(() => {
+        return () => {
+            cleanupOverlays();
+        };
+    }, []);
 
     const navigateWithTransition = useCallback((targetId: string, focusInput = true) => {
         createOverlays();
 
-        const overlay1 = overlayRef.current;
-        const overlay2 = overlayRef2.current;
-
         if (!overlay1 || !overlay2) return;
 
-        const tl = gsap.timeline();
+        const tl = gsap.timeline({
+            onComplete: () => {
+                // Hide overlays after animation completes
+                if (overlay1) overlay1.style.transform = 'scaleX(0)';
+                if (overlay2) overlay2.style.transform = 'scaleX(0)';
+            }
+        });
 
         // Phase 1: Cream wipe from left
         tl.set(overlay2, { transformOrigin: 'left center', scaleX: 0 });
@@ -118,12 +144,14 @@ export const usePageTransition = () => {
     const navigateToTop = useCallback(() => {
         createOverlays();
 
-        const overlay1 = overlayRef.current;
-        const overlay2 = overlayRef2.current;
-
         if (!overlay1 || !overlay2) return;
 
-        const tl = gsap.timeline();
+        const tl = gsap.timeline({
+            onComplete: () => {
+                if (overlay1) overlay1.style.transform = 'scaleX(0)';
+                if (overlay2) overlay2.style.transform = 'scaleX(0)';
+            }
+        });
 
         // Dual wipe in
         tl.set(overlay2, { transformOrigin: 'left center', scaleX: 0 });

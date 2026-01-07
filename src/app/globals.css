@@ -99,15 +99,38 @@
    BASE STYLES
    ============================================ */
 
-html,
-body {
+* {
+  box-sizing: border-box;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
   overflow-x: hidden;
-  max-width: 100vw;
+  overflow-y: auto;
+  /* HTML is the ONLY scroll container */
+  -webkit-overflow-scrolling: touch;
 }
 
 body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  overflow-x: clip !important;
+  overflow-y: clip !important;
+  /* Body should NOT be a scroll container - content flows outside */
   background: var(--color-bg-primary);
   color: var(--color-text-primary);
+}
+
+/* Page transition overlays - ensure no scrollbars */
+#page-transition-overlay-1,
+#page-transition-overlay-2 {
+  pointer-events: none !important;
+  overflow: hidden !important;
 }
 
 /* Custom scrollbar */
@@ -128,10 +151,7 @@ body {
   background: var(--color-cta-hover);
 }
 
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
-}
+/* Removed scroll-behavior: smooth to prevent lag */
 
 /* ============================================
    UTILITY CLASSES FOR THEME COLORS

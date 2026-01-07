@@ -15,9 +15,14 @@ const Preloader = ({ onComplete }: PreloaderProps) => {
     const counterRef = useRef<HTMLSpanElement>(null);
 
     useEffect(() => {
+        // Hide scrollbar during preloader
+        document.documentElement.style.overflowY = 'hidden';
+
         const ctx = gsap.context(() => {
             const tl = gsap.timeline({
                 onComplete: () => {
+                    // Show scrollbar when complete
+                    document.documentElement.style.overflowY = 'auto';
                     setIsComplete(true);
                     onComplete?.();
                 }
@@ -69,7 +74,11 @@ const Preloader = ({ onComplete }: PreloaderProps) => {
 
         }, containerRef);
 
-        return () => ctx.revert();
+        return () => {
+            // Ensure scrollbar is restored on cleanup
+            document.documentElement.style.overflowY = 'auto';
+            ctx.revert();
+        };
     }, [onComplete]);
 
     if (isComplete) return null;
