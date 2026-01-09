@@ -21,7 +21,7 @@
 
 ## 🌟 Overview
 
-**Roshni** is a beautifully crafted, modern landing page for a premium cleaning product. Built with performance and aesthetics in mind, it delivers a luxurious user experience with smooth animations, parallax effects, and a clean, sage-themed color palette.
+**USJEWCLNR** is a beautifully crafted, modern landing page for a premium cleaning product. Built with performance and aesthetics in mind, it delivers a luxurious user experience with smooth animations, parallax effects, and a clean, sage-themed color palette.
 
 ---
 
