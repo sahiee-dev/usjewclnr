@@ -1,36 +1,191 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<div align="center">
 
-## Getting Started
+# ✨ usjewvclnr
 
-First, run the development server:
+**A Premium Cleaning Product Landing Page**
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+*Experience the brilliance of cleanliness*
+
+[![Next.js](https://img.shields.io/badge/Next.js-16.1-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react)](https://react.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
+
+---
+
+[Features](#-features) • [Tech Stack](#-tech-stack) • [Getting Started](#-getting-started) • [Project Structure](#-project-structure) • [Deployment](#-deployment)
+
+</div>
+
+---
+
+## 🌟 Overview
+
+**Roshni** is a beautifully crafted, modern landing page for a premium cleaning product. Built with performance and aesthetics in mind, it delivers a luxurious user experience with smooth animations, parallax effects, and a clean, sage-themed color palette.
+
+---
+
+## ✨ Features
+
+| Feature | Description |
+|---------|-------------|
+| 🎨 **Premium Design** | Elegant sage and forest green color palette with glassmorphic elements |
+| 🚀 **Smooth Animations** | Powered by Framer Motion & GSAP for buttery-smooth transitions |
+| 📱 **Fully Responsive** | Perfect experience on all devices - mobile, tablet, and desktop |
+| ⚡ **Blazing Fast** | Built on Next.js 16 with optimized performance |
+| 🔄 **Preloader** | Elegant loading animation for premium first impressions |
+| 🎭 **Parallax Effects** | Immersive scrolling experience with depth |
+
+---
+
+## 🛠️ Tech Stack
+
+<table>
+<tr>
+<td align="center" width="96">
+<img src="https://skillicons.dev/icons?i=nextjs" width="48" height="48" alt="Next.js" />
+<br>Next.js 16
+</td>
+<td align="center" width="96">
+<img src="https://skillicons.dev/icons?i=react" width="48" height="48" alt="React" />
+<br>React 19
+</td>
+<td align="center" width="96">
+<img src="https://skillicons.dev/icons?i=ts" width="48" height="48" alt="TypeScript" />
+<br>TypeScript
+</td>
+<td align="center" width="96">
+<img src="https://skillicons.dev/icons?i=tailwind" width="48" height="48" alt="Tailwind" />
+<br>Tailwind 4
+</td>
+</tr>
+</table>
+
+### Animation Libraries
+- **Framer Motion** - Declarative animations and gestures
+- **GSAP** - Professional-grade animations
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- **Node.js** 18.0 or later
+- **npm**, **yarn**, **pnpm**, or **bun**
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd roshni
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   # or
+   yarn install
+   # or
+   pnpm install
+   ```
+
+3. **Start the development server**
+   ```bash
+   npm run dev
+   ```
+
+4. **Open your browser**
+   
+   Navigate to [http://localhost:3000](http://localhost:3000)
+
+---
+
+## 📁 Project Structure
+
+```
+roshni/
+├── src/
+│   ├── app/                    # Next.js App Router
+│   │   ├── page.tsx           # Main landing page
+│   │   ├── layout.tsx         # Root layout
+│   │   └── globals.css        # Global styles
+│   │
+│   └── components/            # React components
+│       ├── Header.tsx         # Navigation header
+│       ├── Hero.tsx           # Hero section
+│       ├── ProductDescription.tsx
+│       ├── TraditionalComparison.tsx
+│       ├── Features.tsx       # Product features
+│       ├── LuxuryClean.tsx    # Luxury section
+│       ├── Testimonials.tsx   # Customer reviews
+│       ├── Pricing.tsx        # Pricing cards
+│       ├── ContactForm.tsx    # Contact section
+│       ├── Footer.tsx         # Site footer
+│       └── animations/        # Animation components
+│           ├── Preloader.tsx
+│           ├── ParallaxSection.tsx
+│           ├── AnimationProvider.tsx
+│           └── ...
+│
+├── public/                    # Static assets
+├── package.json
+└── tailwind.config.ts
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🎨 Color Palette
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Color | Hex | Usage |
+|-------|-----|-------|
+| 🤍 Off White | `#F7F9F6` | Main background |
+| 🌿 Pastel Sage | `#D4E4D8` | Section backgrounds |
+| 🌲 Dark Forest Green | `#2D4739` | Primary text |
+| 💚 Emerald Green | `#4A7C59` | CTAs & accents |
+| 🍃 Soft Mint | `#A8D5BA` | Secondary highlights |
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 📜 Available Scripts
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start development server on port 3000 |
+| `npm run build` | Build for production |
+| `npm run start` | Start production server |
+| `npm run lint` | Run ESLint for code quality |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🌐 Deployment
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Deploy on Vercel (Recommended)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The easiest way to deploy is using [Vercel](https://vercel.com):
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new)
+
+### Other Platforms
+
+Build and deploy the production bundle:
+
+```bash
+npm run build
+npm run start
+```
+
+---
+
+## 📝 License
+
+This project is private and proprietary.
+
+---
+
+<div align="center">
+
+**Made with 💚 for Roshni**
+
+</div>
